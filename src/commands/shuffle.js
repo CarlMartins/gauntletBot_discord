@@ -17,11 +17,11 @@ module.exports = {
 
 
     let shuffledPlayer = arrayPlayers.find(shuffled => shuffled.name === args[0]);
-    let player = arrayPlayers.find(p => p.name === message.author.username);
-
     let shuffledPlayerIndex = arrayPlayers.findIndex((shuffled => shuffled.name === shuffledPlayer.name));
+
+    let player = arrayPlayers.find(p => p.name === message.author.username);
     let playerIndex = arrayPlayers.findIndex((p => p.name === player.name));
 
-    message.channel.send(`Player ${ shuffledPlayer.name } shuffled. He was shuffled ${ shuffledPlayer.shuffledTimes } times already. ${ message.author } now have ${ player.shufflePoints } shuffle points.`);
+    return message.channel.send(`Player ${ shuffledPlayer.name } shuffled. He was shuffled ${ shuffledPlayer.shuffledTimes } times already. ${ message.author } now have ${ player.shufflePoints } shuffle points.`);
   },
 };

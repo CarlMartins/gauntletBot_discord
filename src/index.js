@@ -7,6 +7,8 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const fs = require('fs');
 
+require('./helpers/DbConnection');
+
 
 const commandFiles = fs.readdirSync('src/commands').filter(file => file.endsWith('.js'));
 
