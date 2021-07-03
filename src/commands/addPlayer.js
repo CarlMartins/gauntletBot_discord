@@ -1,7 +1,7 @@
 const { playerModel } = require('../models/player');
 
 module.exports = {
-  name: 'create',
+  name: 'add',
   description: 'Creates a new player in the database',
   async execute (message, args) {
     const newPlayer = await new playerModel({
