@@ -11,13 +11,13 @@ module.exports = {
     }).exec();
 
     if (player === null) {
-      return message.channel.send(`Player ${ args[0] } not found`);
+      return message.channel.send(`${ message.author }: player ${ args[0] } not found`);
     }
 
     await playerModel.deleteOne({
       playerName: args[0]
     });
 
-    return message.channel.send(`Player ${ args[0] } removed.`);
+    return message.channel.send(`${ message.author }: player ${ args[0] } removed.`);
   }
 };
