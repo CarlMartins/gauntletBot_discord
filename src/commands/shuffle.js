@@ -1,27 +1,34 @@
+const { playerModel } = require('../models/player');
+
 module.exports = {
   name: 'shuffle',
   description: 'Shuffle now!',
-  execute (message, args) {
-    let arrayPlayers = [{
-      id: 1,
-      name: "EdinDen",
-      shufflePoints: 0,
-      shuffledTimes: 2
-    },
-    {
-      id: 2,
-      name: "SSSensational",
-      shufflePoints: 1,
-      shuffledTimes: 0
-    }];
+  async execute (message, args) {
+
+    let shuffledPlayerFilter = { playerName: args[0] };
+    let shuffledPlayer = await playerModel.findOne(shuffledPlayerFilter);
+
+    if (shuffledPlayer === null || shuffledPlayer.length === 0) {
+      return message.channel.send(`${ message.author }: player ${ args[0] } not found`);
+    }
+
+    let shuffledTimes = shuffledPlayer.shuffledTimes;
+    await playerModel.updateOne(shuffledPlayerFilter, { shuffledTimes: shuffledTimes + 1 });
+    await shuffledPlayer.save();
 
 
-    let shuffledPlayer = arrayPlayers.find(shuffled => shuffled.name === args[0]);
-    let shuffledPlayerIndex = arrayPlayers.findIndex((shuffled => shuffled.name === shuffledPlayer.name));
+    let shufflerPlayerFilter = { playerName: message.author.username };
+    let shufflerPlayer = await playerModel.findOne(shufflerPlayerFilter);
 
-    let player = arrayPlayers.find(p => p.name === message.author.username);
-    let playerIndex = arrayPlayers.findIndex((p => p.name === player.name));
+    if (shufflerPlayer === null || shufflerPlayer.length === 0) {
+      return message.channel.send(`${ message.author }: player ${ shufflerPlayerFilter.playerName } not found.\nCreate your user using !add command.`);
+    }
 
-    return message.channel.send(`Player ${ shuffledPlayer.name } shuffled. He was shuffled ${ shuffledPlayer.shuffledTimes } times already. ${ message.author } now have ${ player.shufflePoints } shuffle points.`);
-  },
+    let gauntletPoints = shufflerPlayer.gauntletPoints;
+    await playerModel.updateOne(shufflerPlayerFilter, { gauntletPoints: gauntletPoints + 1 });
+    await shufflerPlayer.save();
+
+
+    return message.channel.send(`${ message.author }: ${ shuffledPlayerFilter.playerName } was shuffled ${ shuffledTimes + 1 } times.\n${ shufflerPlayerFilter.playerName } now has ${ gauntletPoints + 1 } shuffle points.`);
+  }
 };

@@ -7,11 +7,11 @@ const playerSchema = new Schema({
     required: true
   },
   gauntletPoints: {
-    type: String,
+    type: Number,
     default: 0
   },
   shuffledTimes: {
-    type: String,
+    type: Number,
     default: 0
   },
   isActive: {
