@@ -1,4 +1,4 @@
-const { playerModel } = require('../models/player');
+const { PlayerModel } = require('../models/player');
 
 module.exports = {
   name: 'remove',
@@ -6,7 +6,7 @@ module.exports = {
   async execute (message, args) {
 
 
-    const player = await playerModel.findOne({
+    const player = await PlayerModel.findOne({
       playerName: args[0]
     }).exec();
 
@@ -14,7 +14,7 @@ module.exports = {
       return message.channel.send(`${ message.author }: player ${ args[0] } not found`);
     }
 
-    await playerModel.deleteOne({
+    await PlayerModel.deleteOne({
       playerName: args[0]
     });
 

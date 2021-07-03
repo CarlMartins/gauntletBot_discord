@@ -6,7 +6,7 @@ const playerSchema = new Schema({
     type: String,
     required: true
   },
-  gauntletPoints: {
+  shufflePoints: {
     type: Number,
     default: 0
   },
@@ -33,8 +33,8 @@ const playerSchema = new Schema({
   }
 });
 
-const playerModel = mongoose.model('Player', playerSchema);
+const PlayerModel = mongoose.model('Player', playerSchema);
 
-module.exports = { playerModel };
+module.exports = { PlayerModel };
 
-playerModel.on;
+PlayerModel.on;

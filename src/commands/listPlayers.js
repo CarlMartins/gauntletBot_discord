@@ -1,4 +1,4 @@
-const { playerModel } = require('../models/player');
+const { PlayerModel } = require('../models/player');
 
 module.exports = {
   name: 'members',
@@ -7,7 +7,7 @@ module.exports = {
 
     const players = [];
 
-    const allPlayersQuery = await playerModel.find({}).exec();
+    const allPlayersQuery = await PlayerModel.find({}).exec();
 
     for (let player of allPlayersQuery) {
       players.push(` ${ player.playerName } `);
