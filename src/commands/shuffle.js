@@ -30,9 +30,9 @@ module.exports = {
 
 
     setTimeout(() => {
-      let role = message.guild.roles.cache.find(role => role.name === 'Desenvolvedor');
+      let role = message.guild.roles.cache.find(role => role.name === 'Officer');
       message.channel.send(`${ role }: gauntlet available to be shuffled again.`);
-    }, 180000);
+    }, 1200000);
 
     return message.channel.send(`${ message.author }: ${ shuffledPlayerName } was shuffled ${ shuffledTimes + 1 } times.\n${ shufflerPlayerName } now has ${ shufflePoints + 1 } shuffle points.`);
   }
