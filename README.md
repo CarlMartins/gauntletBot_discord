@@ -34,9 +34,6 @@ It's important to say that multiple methods was poorly implemented with lots of 
 ```bash
 # Clone the repository
 $ git clone https://github.com/CarlMartins/gauntletBot_discord.git
-
-# Install the dependencies
-$ yarn install
 ```
 
 Before you start the bot, you need to rename the ``config.sample.json`` file to ``config.json`` and change the properties:
