@@ -1,6 +1,8 @@
+const dotenv = require('dotenv').config();
+
 const express = require('express');
 const app = express();
-// const { prefix, token } = require('../config.json');
+const { prefix, token } = require('../config.sample.json');
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -23,11 +25,11 @@ client.once('ready', message => {
 });
 
 client.on('message', message => {
-  if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) {
+  if (!message.content.startsWith(process.env.PREFIX || prefix.length) || message.author.bot) {
     return;
   }
 
-  const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/);
+  const args = message.content.slice(process.env.PREFIX.length || prefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
 
   if (!client.commands.has(command)) {
@@ -42,6 +44,6 @@ client.on('message', message => {
 });
 
 
-client.login(process.env.DISCORD_TOKEN);
+client.login(process.env.DISCORD_TOKEN || token);
 
 app.listen(3000);

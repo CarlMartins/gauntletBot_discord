@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-// const { connectionString } = require('../../config.json');
+const { connectionString } = require('../../config.sample.json');
 
 mongoose.connect(
-  process.env.MONGODB_STRING,
+  process.env.MONGODB_STRING || connectionString,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true

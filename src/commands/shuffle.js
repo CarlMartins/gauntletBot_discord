@@ -1,7 +1,5 @@
 const { PlayerModel } = require('../models/player');
 const Discord = require('discord.js');
-const client = new Discord.Client();
-const guild = new Discord.Guild();
 
 module.exports = {
   name: 'shuffle',
