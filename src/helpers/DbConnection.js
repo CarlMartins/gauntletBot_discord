@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { connectionString } = require('../../config.json');
 
 mongoose.connect(
-  connectionString,
+  process.env.MONGODB_STRING || connectionString,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
