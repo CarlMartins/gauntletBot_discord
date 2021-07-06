@@ -23,11 +23,11 @@ client.once('ready', message => {
 });
 
 client.on('message', message => {
-  if (!message.content.startsWith(process.env.PREFIX || prefix) || message.author.bot) {
+  if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) {
     return;
   }
 
-  const args = message.content.slice(process.env.PREFIX.length || prefix.length).trim().split(/ +/);
+  const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
 
   if (!client.commands.has(command)) {
@@ -42,6 +42,6 @@ client.on('message', message => {
 });
 
 
-client.login(process.env.DISCORD_TOKEN || token);
+client.login(process.env.DISCORD_TOKEN);
 
 app.listen(3000);
