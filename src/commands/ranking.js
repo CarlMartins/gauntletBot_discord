@@ -8,7 +8,7 @@ module.exports = {
     let playerData = [];
     let finalString = '';
 
-    if (filter === 'shuffledtimes') {
+    if (filter === '-') {
       playerData = await PlayerModel.find({}).sort({ 'shuffledTimes': -1 }).limit(15).exec();
       playerData = playerData.map(({ playerName, shuffledTimes }) => ({ playerName, shuffledTimes }));
 
@@ -18,7 +18,7 @@ module.exports = {
       }
 
       return message.channel.send(`${message.author}:\n${finalString}`);
-    } else if (filter === 'shufflepoints') {
+    } else if (filter === '+') {
       playerData = await PlayerModel.find({}).sort({ 'shufflePoints': -1 }).limit(15).exec();
       playerData = playerData.map(({ playerName, shufflePoints }) => ({ playerName, shufflePoints }));
 
