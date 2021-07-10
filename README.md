@@ -36,10 +36,10 @@ It's important to say that multiple methods was poorly implemented with lots of 
 $ git clone https://github.com/CarlMartins/gauntletBot_discord.git
 ```
 
-Before you start the bot, you need to rename the ``config.sample.json`` file to ``config.json`` and change the properties:
- - prefix: The prefix that will be used to call the bot commands
- - token: This is your discord token. [See how to get yours](https://discordjs.guide/preparations/setting-up-a-bot-application.html#your-token).
- - connectionString: This is your string to connect do your MongoDb database. [See how to get yours](https://docs.mongodb.com/guides/server/drivers/).
+Before you start the bot, create a file called ``.env`` at the root folder and create the following properties:
+ - PREFIX: The prefix that will be used to call the bot commands
+ - DISCORD_TOKEN: This is your discord token. [See how to get yours](https://discordjs.guide/preparations/setting-up-a-bot-application.html#your-token).
+ - MONGODB_STRING: This is your string to connect do your MongoDb database. [See how to get yours](https://docs.mongodb.com/guides/server/drivers/).
 
 After all,
 ```bash
@@ -51,9 +51,9 @@ $ yarn install
 ```!add "player name"``` - Adds the player in the database. <br>
 ```!remove "player name"``` - Removes the player from the database <br>
 ```!members``` - Lists all the members in the database <br>
-```!shuffle "shuffler name" "shuffled name"``` - The first parameter is the name of who is shuffling the gauntlet. The second one is who is being shuffled. In the database, it will add 1 shuffle point to the shuffler and 1 shuffled time points to that who was shuffled. Both names can be written in a short way like: "LongPlayerName" you can write "long".<br>
-```!rank shuffledtimes``` - Show a rank list of all kingdom members starting from the most shuffled player. <br>
-```!rank shufflepoints``` - Show a rank list of all kingdom members starting from the player with greater amount of shuffle points. <br>
+```!shuffle "shuffler name" "shuffled name"``` - The first parameter is the name of who is shuffling the gauntlet. The second one is who is being shuffled. In the database, it will add 1 shuffle point to the shuffler and 1 shuffled time points to that who was shuffled. Both names can be written in a short way like: "LongPlayerName" can be written "long".<br>
+```!rank -``` - Show a rank list of all kingdom members starting from the most shuffled player. <br>
+```!rank +``` - Show a rank list of all kingdom members starting from the player with greater amount of shuffle points. <br>
 ```!win "orn amount"``` - Adds the orn amount got form gauntlet win to the database. <br>
 ```!status``` - Show all the orn gain separated by month in the current year. <br>
 
@@ -66,6 +66,7 @@ $ yarn install
 
 ### Known issues
   - If you have two player named ``foo`` and ``foobar``, you cannot use ``!shuffle foo foobar`` because ``foo`` matches both players.
+  - Can not use spaces when adding new players.
 
 <hr>
 
