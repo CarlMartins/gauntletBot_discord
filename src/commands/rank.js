@@ -24,7 +24,7 @@ module.exports = {
 
       finalString = '';
       for (let { playerName, shufflePoints } of playerData) {
-        finalString += `${ playerName } - ${ shufflePoints } points\n`;
+        finalString += `**${ playerName }** - ${ shufflePoints } points\n`;
       }
 
       return message.channel.send(`${ message.author }:\n${ finalString }`);
